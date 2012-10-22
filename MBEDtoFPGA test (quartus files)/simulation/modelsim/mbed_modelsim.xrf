@@ -1,0 +1,6 @@
+vendor_name = ModelSim
+source_file = 1, F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/MBEDtoFPGA test (quartus files)/mbed.v
+source_file = 1, F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/MBEDtoFPGA test (quartus files)/db/mbed.cbx.xml
+design_name = mbed
+instance = comp, \go~I , go, mbed, 1
+instance = comp, \show~I , show, mbed, 1

@@ -1,0 +1,96 @@
+EDA Netlist Writer report for mbed
+Mon Oct 22 13:48:09 2012
+Quartus II 32-bit Version 11.1 Build 259 01/25/2012 Service Pack 2 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. EDA Netlist Writer Summary
+  3. Simulation Settings
+  4. Simulation Generated Files
+  5. EDA Netlist Writer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2011 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------+
+; EDA Netlist Writer Summary                                        ;
++---------------------------+---------------------------------------+
+; EDA Netlist Writer Status ; Successful - Mon Oct 22 13:48:09 2012 ;
+; Revision Name             ; mbed                                  ;
+; Top-level Entity Name     ; mbed                                  ;
+; Family                    ; Cyclone II                            ;
+; Simulation Files Creation ; Successful                            ;
++---------------------------+---------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Simulation Settings                                                                                                           ;
++---------------------------------------------------------------------------------------------------+---------------------------+
+; Option                                                                                            ; Setting                   ;
++---------------------------------------------------------------------------------------------------+---------------------------+
+; Tool Name                                                                                         ; ModelSim-Altera (Verilog) ;
+; Generate netlist for functional simulation only                                                   ; Off                       ;
+; Time scale                                                                                        ; 1 ps                      ;
+; Truncate long hierarchy paths                                                                     ; Off                       ;
+; Map illegal HDL characters                                                                        ; Off                       ;
+; Flatten buses into individual nodes                                                               ; Off                       ;
+; Maintain hierarchy                                                                                ; Off                       ;
+; Bring out device-wide set/reset signals as ports                                                  ; Off                       ;
+; Enable glitch filtering                                                                           ; Off                       ;
+; Do not write top level VHDL entity                                                                ; Off                       ;
+; Disable detection of setup and hold time violations in the input registers of bi-directional pins ; Off                       ;
+; Architecture name in VHDL output netlist                                                          ; structure                 ;
+; Generate third-party EDA tool command script for RTL functional simulation                        ; Off                       ;
+; Generate third-party EDA tool command script for gate-level simulation                            ; Off                       ;
++---------------------------------------------------------------------------------------------------+---------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Simulation Generated Files                                                                                                                                                     ;
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Generated Files                                                                                                                                                                ;
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/MBEDtoFPGA test (quartus files)/simulation/modelsim/mbed.vo         ;
+; F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/MBEDtoFPGA test (quartus files)/simulation/modelsim/mbed_fast.vo    ;
+; F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/MBEDtoFPGA test (quartus files)/simulation/modelsim/mbed_v.sdo      ;
+; F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/MBEDtoFPGA test (quartus files)/simulation/modelsim/mbed_v_fast.sdo ;
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------+
+; EDA Netlist Writer Messages ;
++-----------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 32-bit EDA Netlist Writer
+    Info: Version 11.1 Build 259 01/25/2012 Service Pack 2 SJ Web Edition
+    Info: Processing started: Mon Oct 22 13:48:08 2012
+Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off mbed -c mbed
+Info (204026): Generated files "mbed.vo", "mbed_fast.vo", "mbed_v.sdo" and "mbed_v_fast.sdo" in directory "F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/MBEDtoFPGA test (quartus files)/simulation/modelsim/" for EDA simulation tool
+Info: Quartus II 32-bit EDA Netlist Writer was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 255 megabytes
+    Info: Processing ended: Mon Oct 22 13:48:09 2012
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
+
+
