@@ -1,0 +1,24 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\niedzwiedz\Documents\Quartus\Ass2_copy\simulation\modelsim
+vlab2
+!s100 hdCKJf^hECZW>TGR9O[6;0
+IOUA@Jb?5j3jZaV@1DKUS90
+VBJhlo]H0ejacSPB:^f;dO1
+Z1 dC:\Users\niedzwiedz\Documents\Quartus\Ass2_copy\simulation\modelsim
+w1350860530
+8C:/Users/niedzwiedz/Documents/Quartus/Ass2_copy/lab2.v
+FC:/Users/niedzwiedz/Documents/Quartus/Ass2_copy/lab2.v
+L0 15
+OV;L;10.0c;49
+r1
+!s85 0
+31
+!s108 1350860589.219000
+!s107 C:/Users/niedzwiedz/Documents/Quartus/Ass2_copy/lab2.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/niedzwiedz/Documents/Quartus/Ass2_copy|C:/Users/niedzwiedz/Documents/Quartus/Ass2_copy/lab2.v|
+!s101 -O0
+o-vlog01compat -work work -O0
+!s92 -vlog01compat -work work +incdir+C:/Users/niedzwiedz/Documents/Quartus/Ass2_copy -O0

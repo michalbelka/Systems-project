@@ -1,0 +1,22 @@
+Quartus II Archive log --	C:/Users/niedzwiedz/Documents/Quartus/Ass2/lab2_tmp_archive.qarlog
+
+Archive:	C:/Users/niedzwiedz/Documents/Quartus/Ass2/lab2_tmp_archive.qar
+Date:		Sun Oct 21 22:35:32 2012
+Quartus II 32-bit		11.1 Build 259 01/25/2012 SP 2 SJ Web Edition
+
+	=========== Files Selected: ===========
+C:/Users/niedzwiedz/Documents/Quartus/Ass2/incremental_db/compiled_partitions/lab2.db_info
+C:/Users/niedzwiedz/Documents/Quartus/Ass2/lab2.qpf
+C:/Users/niedzwiedz/Documents/Quartus/Ass2/lab2.qsf
+C:/Users/niedzwiedz/Documents/Quartus/Ass2/lab2.v
+c:/altera/11.1sp2/quartus/bin/assignment_defaults.qdf
+	======= Total: 5 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.
+
+
+******* Archived project restoration attempt on Sun Oct 21 22:35:34 2012
+Source archive file:	C:/Users/niedzwiedz/Documents/Quartus/Ass2/lab2_tmp_archive.qar
+Archive was extracted into	C:/Users/niedzwiedz/Documents/Quartus/Ass2_copy/
+		 - successfully.
