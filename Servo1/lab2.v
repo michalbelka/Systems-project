@@ -12,74 +12,138 @@
  *
  *********************************/
 
-module lab2 (clk, pwm, pwm_check, left_check, right_check, mid_check);
+module lab2 (clk, pwm, newRed, newBlue, newGreen, block);
 
 // Inputs
-	input clk;
+	input clk, newBlue, newRed, newGreen;
 	
 // Outputs
-	output pwm, pwm_check, left_check, right_check, mid_check;
+	output pwm;
+	output [6:0]block;
 
 // Asuming clock  c = 50 MHz therefore clock period = 20 ns
 // and 256 steps
 // t0 = 20ms, p = t0/c = 1'000'000 - number of clock ticks for one whole cycle
 // t1 = 1 ms, P = t1/c = 50'000 - numbder of clock ticks for one 1ms
-// lenght = t1 + p/256 * (ASCII value)
 	
-	parameter [16:0] PWM_length_left = 50000; //should be 1 ms
-	parameter [16:0] PWM_length_mid = 75000; //should be 1.5 ms
-	parameter [16:0] PWM_length_right = 100000; //should be 2 ms
+	parameter [17:0] PWM_length_acw = 300000;  //	go cw (?)
+	parameter [17:0] PWM_length_cw = 100000; // 	go acw (?)
 	
-	reg [20:0] counter = 0;
+	reg [21:0] counter = 0;
 	reg [9:0] cycleCounterIncreaser = 0;
-	reg [1:0] cycleCounter = 0;
 	reg pwm;
-	reg mid_check, left_check, right_check, pwm_check;
-	
-
+	reg [1:0]curPosition = 0;
+	reg [2:0]newPosition;
+	reg [2:0] direction;
+	reg done;
 	
 	always @(posedge clk) begin
-		counter = counter+1; // Increase steps counter
-		left_check = 0;
+		// New position
+		/* TODO
+		 *
+		 * This could be done in a different way, and better
+		 * insted of taking 3 inputs, take only one from MBED
+		 * and count how long it is one. Depengin on this choose
+		 * new direction. SHould be quite easy since we know
+		 * clk period
+		 *
+		 */
+		if (newRed == 1) newPosition = 0;
+		else if (newGreen == 1) newPosition = 1;
+		else if (newBlue == 1) newPosition = 2;
+	
+		// Movements
+		case (curPosition)
+			0: begin // red
+				case (newPosition)
+					0: direction = 0;
+					1: direction = 1;
+					2: direction = 3;
+				endcase
+			end
+			
+			1: begin // green
+				case (newPosition)
+					0: direction = 2;
+					1: direction = 0;
+					2: direction = 1;
+				endcase
+			end
+			
+			2: begin // blue
+				case (newPosition)
+					0: direction = 4;
+					1: direction = 2;
+					2: direction = 0;
+				endcase
+			end
+		endcase
+	
 		
-		if(cycleCounterIncreaser <= 30) begin
-			case (cycleCounter)
-				0: begin // First two cycles, first initial
-					left_check = 1;
-					mid_check = 0;
-					right_check = 0;
-					if (counter <= PWM_length_left) pwm = 1;
+		counter = counter+1; // Increase steps counter
+		
+		case (direction)
+			0: begin // Do nothing
+				done = 1;
+			end
+			
+			1: begin // Do nothing
+				if(cycleCounterIncreaser <= 13) begin
+					if (counter <= PWM_length_acw) pwm = 1;
 					else pwm = 0;
 				end
 				
-				1: begin
-					left_check = 0;
-					mid_check = 1;
-					right_check = 0;
-					if (counter <= PWM_length_mid) pwm = 1;
+				if(cycleCounterIncreaser == 14) begin
+					done = 1;
+					curPosition = newPosition;
+				end
+			end
+			
+			2: begin // Do nothing
+				if(cycleCounterIncreaser <= 13) begin
+					if (counter <= PWM_length_cw) pwm = 1;
 					else pwm = 0;
 				end
 				
-				2: begin // Next two cycles, second initial
-					left_check = 0;
-					mid_check = 0;
-					right_check = 1;
-					if (counter <= PWM_length_right) pwm = 1;
+				if(cycleCounterIncreaser == 14) begin
+					done = 1;
+					curPosition = newPosition;
+				end
+			end
+			
+			3: begin // Do nothing
+				if(cycleCounterIncreaser <= 33) begin
+					if (counter <= PWM_length_acw) pwm = 1;
 					else pwm = 0;
 				end
-			endcase
-		end
+				
+				if(cycleCounterIncreaser == 34) begin
+					done = 1;
+					curPosition = newPosition;
+				end
+			end
+			
+			4: begin
+				if(cycleCounterIncreaser <= 33) begin
+					if (counter <= PWM_length_cw) pwm = 1;
+					else pwm = 0;
+				end
+				
+				if(cycleCounterIncreaser == 34) begin
+					done = 1;
+					curPosition = newPosition;
+				end
+			end
+			
+		endcase
 		// When full cycle complete, go from beginning, increse cycle counter
 		if (counter > 999999) begin
 			counter = 0;
 			cycleCounterIncreaser = cycleCounterIncreaser+1;
 			if (cycleCounterIncreaser >= 100) begin
-				if (cycleCounter == 2) cycleCounter = 0;
-				else cycleCounter = cycleCounter+1;
 				cycleCounterIncreaser = 0;
 			end
 		end
-		pwm_check <= pwm;
 	end
 
 endmodule

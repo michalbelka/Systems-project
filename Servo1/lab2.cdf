@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP2C20F484) Path("C:/Users/niedzwiedz/Documents/Quartus/Ass2/") File("lab2.sof") MfrSpec(OpMask(1));
+		Device PartName(EP2C20F484) Path("F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/Servo1/") File("lab2.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

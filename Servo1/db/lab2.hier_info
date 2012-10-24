@@ -1,7 +1,4 @@
 |lab2
-clk => pwm_check~reg0.CLK
-clk => cycleCounter[0].CLK
-clk => cycleCounter[1].CLK
 clk => cycleCounterIncreaser[0].CLK
 clk => cycleCounterIncreaser[1].CLK
 clk => cycleCounterIncreaser[2].CLK
@@ -13,9 +10,6 @@ clk => cycleCounterIncreaser[7].CLK
 clk => cycleCounterIncreaser[8].CLK
 clk => cycleCounterIncreaser[9].CLK
 clk => pwm~reg0.CLK
-clk => right_check~reg0.CLK
-clk => mid_check~reg0.CLK
-clk => left_check~reg0.CLK
 clk => counter[0].CLK
 clk => counter[1].CLK
 clk => counter[2].CLK
@@ -37,5 +31,18 @@ clk => counter[17].CLK
 clk => counter[18].CLK
 clk => counter[19].CLK
 clk => counter[20].CLK
+clk => counter[21].CLK
+clk => curPosition~1.DATAIN
+clk => direction~1.DATAIN
+clk => newPosition~4.DATAIN
+newRed => newPosition.OUTPUTSELECT
+newRed => newPosition.OUTPUTSELECT
+newRed => newPosition.OUTPUTSELECT
+newBlue => newPosition.OUTPUTSELECT
+newBlue => newPosition.OUTPUTSELECT
+newBlue => newPosition.OUTPUTSELECT
+newGreen => newPosition.OUTPUTSELECT
+newGreen => newPosition.OUTPUTSELECT
+newGreen => newPosition.OUTPUTSELECT
 
 
