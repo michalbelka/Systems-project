@@ -1,0 +1,5 @@
+
+State Machine - |lab2|active
+Name active.01 
+active.00 0 
+active.01 1 
