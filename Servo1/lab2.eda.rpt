@@ -1,5 +1,5 @@
 EDA Netlist Writer report for lab2
-Wed Oct 24 20:32:11 2012
+Sun Oct 28 10:23:29 2012
 Quartus II 32-bit Version 11.1 Build 259 01/25/2012 Service Pack 2 SJ Web Edition
 
 
@@ -36,7 +36,7 @@ applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Wed Oct 24 20:32:11 2012 ;
+; EDA Netlist Writer Status ; Successful - Sun Oct 28 10:23:29 2012 ;
 ; Revision Name             ; lab2                                  ;
 ; Top-level Entity Name     ; lab2                                  ;
 ; Family                    ; Cyclone II                            ;
@@ -66,16 +66,16 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------------------------+---------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Simulation Generated Files                                                                                                                            ;
-+-------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Generated Files                                                                                                                                       ;
-+-------------------------------------------------------------------------------------------------------------------------------------------------------+
-; F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/Servo1/simulation/modelsim/lab2.vo         ;
-; F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/Servo1/simulation/modelsim/lab2_fast.vo    ;
-; F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/Servo1/simulation/modelsim/lab2_v.sdo      ;
-; F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/Servo1/simulation/modelsim/lab2_v_fast.sdo ;
-+-------------------------------------------------------------------------------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Simulation Generated Files                                                                                                                                      ;
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Generated Files                                                                                                                                                 ;
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/2. FPGA to servo/simulation/modelsim/lab2.vo         ;
+; F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/2. FPGA to servo/simulation/modelsim/lab2_fast.vo    ;
+; F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/2. FPGA to servo/simulation/modelsim/lab2_v.sdo      ;
+; F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/2. FPGA to servo/simulation/modelsim/lab2_v_fast.sdo ;
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------+
@@ -84,12 +84,12 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 32-bit EDA Netlist Writer
     Info: Version 11.1 Build 259 01/25/2012 Service Pack 2 SJ Web Edition
-    Info: Processing started: Wed Oct 24 20:32:10 2012
+    Info: Processing started: Sun Oct 28 10:23:28 2012
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off lab2 -c lab2
-Info (204026): Generated files "lab2.vo", "lab2_fast.vo", "lab2_v.sdo" and "lab2_v_fast.sdo" in directory "F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/Servo1/simulation/modelsim/" for EDA simulation tool
+Info (204026): Generated files "lab2.vo", "lab2_fast.vo", "lab2_v.sdo" and "lab2_v_fast.sdo" in directory "F:/Dropbox/DB Documents/Heriot-Watt/Year 3/Semester 1/Systems Project/Digital and Software/Systems-project/2. FPGA to servo/simulation/modelsim/" for EDA simulation tool
 Info: Quartus II 32-bit EDA Netlist Writer was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 258 megabytes
-    Info: Processing ended: Wed Oct 24 20:32:12 2012
+    Info: Processing ended: Sun Oct 28 10:23:30 2012
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:01
 
