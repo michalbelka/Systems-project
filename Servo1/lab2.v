@@ -30,13 +30,14 @@
 **********************************************************/
 
 
-module lab2 (clk, go, pwm, posRed, pwm_check, left_check, right_check);
+module lab2 (clk, go, pwm, posRed, pwm_check, left_check, right_check, active_check, go_check);
  
  /* INPUTS */
  
  // clk:			50 MHz clock from FPGA
  // go:			when recieved, start dispensing tokens
- input clk, go;
+ input clk;
+ input go;
  
  // posRed:		when recieved, change color position to red (should be 2 more like this, or look at the comment down)
  input posRed;
@@ -48,8 +49,8 @@ module lab2 (clk, go, pwm, posRed, pwm_check, left_check, right_check);
  reg pwm;
  
  // *_check:	feedback signals, helping with debugging.
- output pwm_check, left_check, right_check;
- reg left_check, right_check, pwm_check;
+ output pwm_check, left_check, right_check, active_check, go_check;
+ reg left_check, right_check, pwm_check, active_check, go_check;
 
  /*****************************
   *
@@ -89,26 +90,6 @@ module lab2 (clk, go, pwm, posRed, pwm_check, left_check, right_check);
  reg [1:0] active = 0;
 
 	always @(posedge clk) begin
-		/* NOT WORKING CODE FOR CHANGING COLOR
-		   JUST TO TRY
-			CAN USE AS REF
-			
-			if (posRed == 1) begin
-				active = 0;
-				counter = counter+1;
-				
-				if(cycleCounter <= cycleAmount) begin
-					if (counter <= PWM_length_right) pwm = 1;
-					else pwm = 0;
-				end
-				
-				if (counter > 999999) begin
-					counter = 0;
-					cycleCounter = cycleCounter+1;
-					if (cycleCounter >= 100) cycleCounter = 0;
-				 end
-			end
-		*/
 
 		// If go signal from MBED is 1, dispense coin (= change active to 1)
 		if(go) begin
@@ -159,6 +140,9 @@ module lab2 (clk, go, pwm, posRed, pwm_check, left_check, right_check);
 			// Feedback signal
 			pwm_check <= pwm;
 		end
+		
+		active_check <= active;
+		go_check <= go;
 	end
 
 endmodule

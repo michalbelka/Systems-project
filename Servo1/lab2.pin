@@ -84,7 +84,7 @@ GND*                         : A13       :        :                   :         
 posRed                       : A14       : input  : 3.3-V LVTTL       :         : 4         : Y              
 GND*                         : A15       :        :                   :         : 4         :                
 GND*                         : A16       :        :                   :         : 4         :                
-go                           : A17       : input  : 3.3-V LVTTL       :         : 4         : Y              
+GND*                         : A17       :        :                   :         : 4         :                
 GND*                         : A18       :        :                   :         : 4         :                
 GND*                         : A19       :        :                   :         : 4         :                
 GND*                         : A20       :        :                   :         : 4         :                
@@ -353,7 +353,7 @@ GND*                         : L18       :        :                   :         
 GND*                         : L19       :        :                   :         : 5         :                
 VCCIO5                       : L20       : power  :                   : 3.3V    : 5         :                
 GND+                         : L21       :        :                   :         : 5         :                
-GND+                         : L22       :        :                   :         : 5         :                
+go                           : L22       : input  : 3.3-V LVTTL       :         : 5         : Y              
 GND+                         : M1        :        :                   :         : 1         :                
 GND+                         : M2        :        :                   :         : 1         :                
 VCCIO1                       : M3        : power  :                   : 3.3V    : 1         :                
@@ -437,8 +437,8 @@ GND*                         : R14       :        :                   :         
 GND*                         : R15       :        :                   :         : 7         :                
 GND*                         : R16       :        :                   :         : 7         :                
 GND*                         : R17       :        :                   :         : 6         :                
-GND*                         : R18       :        :                   :         : 6         :                
-GND*                         : R19       :        :                   :         : 6         :                
+active_check                 : R18       : output : 3.3-V LVTTL       :         : 6         : Y              
+go_check                     : R19       : output : 3.3-V LVTTL       :         : 6         : Y              
 pwm_check                    : R20       : output : 3.3-V LVTTL       :         : 6         : Y              
 GND*                         : R21       :        :                   :         : 6         :                
 GND*                         : R22       :        :                   :         : 6         :                

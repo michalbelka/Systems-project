@@ -1,0 +1,7 @@
+
+State Machine - |color|newPosition
+Name newPosition.11 newPosition.10 newPosition.01 newPosition.00 
+newPosition.00 0 0 0 0 
+newPosition.01 0 0 1 1 
+newPosition.10 0 1 0 1 
+newPosition.11 1 0 0 1 
