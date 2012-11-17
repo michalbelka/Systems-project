@@ -1,4 +1,6 @@
 |lab2
+clk => go_check~reg0.CLK
+clk => active_check~reg0.CLK
 clk => pwm_check~reg0.CLK
 clk => direction[0].CLK
 clk => direction[1].CLK
@@ -39,6 +41,7 @@ clk => counter[20].CLK
 clk => active~3.DATAIN
 go => active.OUTPUTSELECT
 go => active.OUTPUTSELECT
+go => go_check~reg0.DATAIN
 posRed => ~NO_FANOUT~
 
 
