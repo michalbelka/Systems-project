@@ -1,4 +1,4 @@
- -- Copyright (C) 1991-2011 Altera Corporation
+ -- Copyright (C) 1991-2007 Altera Corporation
  -- Your use of Altera Corporation's design tools, logic functions 
  -- and other software and tools, and its AMPP partner logic 
  -- functions, and any output files from any of the foregoing 
@@ -22,7 +22,6 @@
 
  ---------------------------------------------------------------------------------
  -- NC            : No Connect. This pin has no internal connection to the device.
- -- DNU           : Do Not Use. This pin MUST NOT be connected.
  -- VCCINT        : Dedicated power pin, which MUST be connected to VCC  (1.2V).
  -- VCCIO         : Dedicated power pin, which MUST be connected to VCC
  --                 of its bank.
@@ -48,8 +47,9 @@
  --					This pin should be connected to GND. It may also be connected  to a
  --					valid signal  on the board  (low, high, or toggling)  if that signal
  --					is required for a different revision of the design.
- -- GND*          : Unused  I/O  pin. Connect each pin marked GND* directly to GND
- --           	    or leave it unconnected.
+ -- GND*          : Unused  I/O  pin.   This pin can either be left unconnected or
+ --           	    connected to GND.  Connecting this pin to GND will improve the
+ --           	    device's immunity to noise.
  -- RESERVED      : Unused I/O pin, which MUST be left unconnected.
  -- RESERVED_INPUT    : Pin is tri-stated and should be connected to the board.
  -- RESERVED_INPUT_WITH_WEAK_PULLUP    : Pin is tri-stated with internal weak pull-up resistor.
@@ -57,13 +57,7 @@
  -- RESERVED_OUTPUT_DRIVEN_HIGH        : Pin is output driven high.
  ---------------------------------------------------------------------------------
 
-
-
- ---------------------------------------------------------------------------------
- -- Pin directions (input, output or bidir) are based on device operating in user mode.
- ---------------------------------------------------------------------------------
-
-Quartus II 32-bit Version 11.1 Build 259 01/25/2012 Service Pack 2 SJ Web Edition
+Quartus II Version 7.1 Build 156 04/30/2007 SJ Full Version
 CHIP  "color"  ASSIGNED TO AN: EP2C20F484C7
 
 Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
@@ -81,9 +75,9 @@ GND*                         : A10       :        :                   :         
 GND*                         : A11       :        :                   :         : 3         :                
 GND+                         : A12       :        :                   :         : 4         :                
 GND*                         : A13       :        :                   :         : 4         :                
-pwm                          : A14       : output : 3.3-V LVTTL       :         : 4         : Y              
-GND*                         : A15       :        :                   :         : 4         :                
-GND*                         : A16       :        :                   :         : 4         :                
+posRed                       : A14       : input  : 3.3-V LVTTL       :         : 4         : Y              
+posGreen                     : A15       : input  : 3.3-V LVTTL       :         : 4         : Y              
+posBlue                      : A16       : input  : 3.3-V LVTTL       :         : 4         : Y              
 go                           : A17       : input  : 3.3-V LVTTL       :         : 4         : Y              
 GND*                         : A18       :        :                   :         : 4         :                
 GND*                         : A19       :        :                   :         : 4         :                
@@ -148,7 +142,7 @@ GND*                         : B11       :        :                   :         
 GND+                         : B12       :        :                   :         : 4         :                
 pwm_Pos                      : B13       : output : 3.3-V LVTTL       :         : 4         : Y              
 GND*                         : B14       :        :                   :         : 4         :                
-GND*                         : B15       :        :                   :         : 4         :                
+pwm                          : B15       : output : 3.3-V LVTTL       :         : 4         : Y              
 GND*                         : B16       :        :                   :         : 4         :                
 GND*                         : B17       :        :                   :         : 4         :                
 GND*                         : B18       :        :                   :         : 4         :                
@@ -352,8 +346,8 @@ NC                           : L17       :        :                   :         
 GND*                         : L18       :        :                   :         : 5         :                
 GND*                         : L19       :        :                   :         : 5         :                
 VCCIO5                       : L20       : power  :                   : 3.3V    : 5         :                
-posGreen                     : L21       : input  : 3.3-V LVTTL       :         : 5         : Y              
-posBlue                      : L22       : input  : 3.3-V LVTTL       :         : 5         : Y              
+GND+                         : L21       :        :                   :         : 5         :                
+GND+                         : L22       :        :                   :         : 5         :                
 GND+                         : M1        :        :                   :         : 1         :                
 GND+                         : M2        :        :                   :         : 1         :                
 VCCIO1                       : M3        : power  :                   : 3.3V    : 1         :                
@@ -375,7 +369,7 @@ GND*                         : M18       :        :                   :         
 GND*                         : M19       :        :                   :         : 6         :                
 VCCIO6                       : M20       : power  :                   : 3.3V    : 6         :                
 GND+                         : M21       :        :                   :         : 6         :                
-posRed                       : M22       : input  : 3.3-V LVTTL       :         : 6         : Y              
+GND+                         : M22       :        :                   :         : 6         :                
 GND*                         : N1        :        :                   :         : 1         :                
 GND*                         : N2        :        :                   :         : 1         :                
 GND*                         : N3        :        :                   :         : 1         :                

@@ -82,16 +82,10 @@ module color (clk, go, pwm, pwm_Pos, posRed, posGreen, posBlue, pwm_check, left_
 
  // Counter is counting clock ticks. One full cycle is 1'000'000 ticks
  reg [20:0] counter = 0;
- reg [20:0] counter_PosR = 0;
- reg [20:0] counter_PosG = 0;
- reg [20:0] counter_PosB = 0;
  
  // Certain about of PWM pulses must be sent to servo and this is counting
  // TODO: Check what is the lowest number we need and use it
  reg [9:0] cycleCounter = 0;
- reg [9:0] cycleCounter_PosR = 0;
- reg [9:0] cycleCounter_PosG = 0;
- reg [9:0] cycleCounter_PosB = 0;
  parameter [7:0] cycleAmount = 50; // This was addaed now, no checking, should work, but check, if not just change to 50 in code 
  
  // Direction saves what is current position of dispensing servo and therefore indicating what direction it should move to dispense
@@ -104,7 +98,7 @@ module color (clk, go, pwm, pwm_Pos, posRed, posGreen, posBlue, pwm_check, left_
 
 	always @(posedge clk) begin
 		go_check <= go;
-	
+		
 		
 		// Turn on color positioning
 		/******************
@@ -159,7 +153,7 @@ module color (clk, go, pwm, pwm_Pos, posRed, posGreen, posBlue, pwm_check, left_
 				counter = 0;
 				cycleCounter = cycleCounter+1;
 				
-				if(cycleCounter >= 100) begin // Reset everything
+				if(cycleCounter >= cycleAmount) begin // Reset everything
 					cycleCounter = 0;
 					newPosition = 0;
 					posRed_check = 0;

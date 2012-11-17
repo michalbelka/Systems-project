@@ -1,7 +1,7 @@
-Quartus II 32-bit
-Version 11.1 Build 259 01/25/2012 Service Pack 2 SJ Web Edition
-14
-1323
+Version 7.1 Build 156 04/30/2007 SJ Full Version
+11
+894
+OFF
 OFF
 OFF
 OFF
@@ -12,11 +12,11 @@ FV_OFF
 Level2
 0
 0
-0
-0
 VRSM_ON
 VHSM_ON
 0
+-- Start Partition --
+-- End Partition --
 -- Start Library Paths --
 -- End Library Paths --
 -- Start VHDL Libraries --
@@ -33,8 +33,8 @@ ON
 # case_sensitive
 # source_file
 color.v
-f2889148ba6912a991eaca64e2abba
-8
+4a1fac7e1e3a54de4c4d8192edaa69
+7
 # internal_option {
 HDL_INITIAL_FANOUT_LIMIT
 OFF
@@ -46,10 +46,6 @@ AUTO_ROM_RECOGNITION
 ON
 IGNORE_VERILOG_INITIAL_CONSTRUCTS
 OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
 }
 # user_parameter {
 PWM_length_left
@@ -80,6 +76,9 @@ DEF
 # hierarchies {
 |
 }
+# lmf
+c:|program files|altera|71|quartus|lmf|
+d41d8cd98f0b24e980998ecf8427e
 # macro_sequence
 
 # end
