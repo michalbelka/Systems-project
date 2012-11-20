@@ -1,30 +1,13 @@
 /*********************************************************
  *
  *  This design is responsible for taking signal from MBED
- * and running proper code when recieve this signal.
+ * and moving proper servo to proper position when recieve this signal.
  *
- *  At the moment, this code is only waiting for go signal
- * and when this signal is recieved, it is dispensing one
- * token (= move servo 90 deg).
- *
- * TODO
- *
- *  This code should also wait for change color and lift
- * signals from MBED. When first signal is recieved, FPGA
- * should send signal to second servo to move to proper
- * position in order to change color of tokens dispensed.
- *
- *  Second signal should cause lift servo move 90 degree
- * to lift up tokens. After another signal is recieved
- * (when head is closed) servo go back = lift is going down.
- *
- *  Also, check all sizes if they need to be so big, if not,
- * don't waste resource
  *
  * -----
  *
  * Creation date:		23/10/2012
- * Last edit:			28/10/2012
+ * Last edit:			20/11/2012
  * Author:				DispTech
  *
 **********************************************************/
@@ -35,10 +18,10 @@ module color (clk, go, pwm, pwm_Pos, posRed, posGreen, posBlue, pwm_check, left_
  /* INPUTS */
  
  // clk:			50 MHz clock from FPGA
- // go:			when recieved, start dispensing tokens
+ // go:				when recieved, dispense token
  input clk, go;
  
- // posRed:		when recieved, change color position to red (should be 2 more like this, or look at the comment down)
+ // pos*:	when recieved, change color position to red, green, blue
  input posRed;
  input posGreen;
  input posBlue;
@@ -47,7 +30,8 @@ module color (clk, go, pwm, pwm_Pos, posRed, posGreen, posBlue, pwm_check, left_
  /* OUTPUTS */
  
 
- // pwm:			pwm output signal for servos
+ // pwm:			pwm output signal for dispensing servo
+ // pwm_Pos:		pwm output signal for changing color
  output pwm;
  output pwm_Pos;
  reg pwm;
@@ -65,17 +49,20 @@ module color (clk, go, pwm, pwm_Pos, posRed, posGreen, posBlue, pwm_check, left_
   * Servo is taking 1 ms pulse for goring left, 2 ms for going right (90 deg move)
   * while 1.5 ms is 45 deg move
   *
-  * 1 ms is 50'000 ticks
-  * 1.5 ms is 65'000 ticks
-  * 2 ms is 100'000 ticks
+  * e.g.
+  * 1 ms is 50'000 ticks (0 deg)
+  * 1.5 ms is 65'000 ticks (45 deg)
+  * 2 ms is 100'000 ticks (90 deg)
   *
-  * Those values are saved as parameters below
+  * Values are saved as parameters below
   *
  ******************************/ 
 
+ // Values for dispensing servo
  parameter [16:0] PWM_length_left = 50000;
  parameter [16:0] PWM_length_right = 100000;
  
+ // Values for color changing servo
  parameter [16:0] PWM_length_red = 73000;
  parameter [16:0] PWM_length_green = 95000;
  parameter [16:0] PWM_length_blue = 50000;
@@ -83,17 +70,25 @@ module color (clk, go, pwm, pwm_Pos, posRed, posGreen, posBlue, pwm_check, left_
  // Counter is counting clock ticks. One full cycle is 1'000'000 ticks
  reg [20:0] counter = 0;
  
- // Certain about of PWM pulses must be sent to servo and this is counting
+ // Certain amount of PWM pulses must be sent to servo for full movement and this is counting those pulses
  // TODO: Check what is the lowest number we need and use it
  reg [9:0] cycleCounter = 0;
- parameter [7:0] cycleAmount = 50; // This was addaed now, no checking, should work, but check, if not just change to 50 in code 
+ parameter [7:0] cycleAmount = 50;
  
  // Direction saves what is current position of dispensing servo and therefore indicating what direction it should move to dispense
  reg [1:0] direction = 0;
  
  // If active is one, dispense token. By default 0, change when recieve go signal
  reg active = 0;
+ 
+ // newPosition is indicating what color should be chosen. Therefore, no dispensing can happen
+ // 0 is no change
+ // 1 is red
+ // 2 is green
+ // 3 is blue
  reg [1:0] newPosition = 0;
+ 
+ // This indicates if positioning should occur. No dispensing can happen during that time
  reg positioning = 0;
 
 	always @(posedge clk) begin
@@ -121,13 +116,15 @@ module color (clk, go, pwm, pwm_Pos, posRed, posGreen, posBlue, pwm_check, left_
 			posBlue_check = 1;
 		end
 		
-		// Turn on positioning blockade
+		// Turn on positioning blockade; no dispensing can happen when colors are changed
+		// NOTE: It was tested; go signal was send along with color changing signal and system was not dispensing tokens.
+		// NOTE2: This is just for security reasons. In normal use, without any errors there is no chance than both signals are 1 at the same time
 		if(newPosition != 0) positioning = 1;
 		
 		// Change position
 		if(positioning == 1) begin
-			active = 0;
-			counter = counter + 1;
+			active = 0; // Make sure it is not trying to dispense anything.
+			counter = counter + 1; // Ticks counter
 			
 			if(cycleCounter <= cycleAmount) begin
 				case(newPosition)
@@ -149,31 +146,31 @@ module color (clk, go, pwm, pwm_Pos, posRed, posGreen, posBlue, pwm_check, left_
 				endcase
 			end
 			
-			if (counter > 999999) begin
-				counter = 0;
-				cycleCounter = cycleCounter+1;
+			if (counter > 999999) begin // 1 000 000 ticks = 20 ms = one full pulse cycle
+				counter = 0; // Reset ticks counter
+				cycleCounter = cycleCounter+1; // And increase cycle counter
 				
-				if(cycleCounter >= cycleAmount) begin // Reset everything
+				if(cycleCounter >= cycleAmount) begin // Reset everything if enough pulses were sent
 					cycleCounter = 0;
 					newPosition = 0;
 					posRed_check = 0;
 					posGreen_check = 0;
 					posBlue_check = 0;
-					positioning = 0;
+					positioning = 0; // Turn off positioning so dispensing can occur
 				end
 			end
 			
-			pwm_check <= pwm_Pos;
+			pwm_check <= pwm_Pos; // Feedback
 		end
 		
-		// If go signal from MBED is 1, dispense coin (= change active to 1)
+		// If go signal from MBED is 1 and position is not changed, dispense coin (= change active to 1)
 		if(go == 1 && positioning == 0)
 			active = 1;
 		
 		// If active = 1, dispense coin
 		if(active == 1) begin
 
-			counter = counter+1; // Increase steps counter
+			counter = counter+1; // Increase ticks counter
 
 			if(cycleCounter <= cycleAmount) begin
 				case (direction) // Direction of movement based on curent position
