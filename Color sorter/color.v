@@ -68,7 +68,7 @@ module color (clk, go, pwm, pwm_Pos, posRed, posGreen, posBlue, pwm_check, left_
  parameter [16:0] PWM_length_blue = 50000;
 
  // Counter is counting clock ticks. One full cycle is 1'000'000 ticks
- reg [20:0] counter = 0;
+ reg [21:0] counter = 0;
  
  // Certain amount of PWM pulses must be sent to servo for full movement and this is counting those pulses
  // TODO: Check what is the lowest number we need and use it
@@ -146,7 +146,7 @@ module color (clk, go, pwm, pwm_Pos, posRed, posGreen, posBlue, pwm_check, left_
 				endcase
 			end
 			
-			if (counter > 999999) begin // 1 000 000 ticks = 20 ms = one full pulse cycle
+			if (counter > 2999999) begin // 3 000 000 ticks = 60 ms = one full pulse cycle
 				counter = 0; // Reset ticks counter
 				cycleCounter = cycleCounter+1; // And increase cycle counter
 				
