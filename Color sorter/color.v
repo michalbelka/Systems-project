@@ -13,7 +13,7 @@
 **********************************************************/
 
 
-module color (clk, go, pwm, pwm_Pos, posRed, posGreen, posBlue, pwm_check, left_check, right_check, posRed_check, posBlue_check, posGreen_check, go_check);
+module color (clk, go, pwm, pwm_Pos, aniPwm, posRed, posGreen, posBlue, pwm_check, aniPwm_check, left_check, right_check, posRed_check, posBlue_check, posGreen_check, go_check);
  
  /* INPUTS */
  
@@ -32,14 +32,17 @@ module color (clk, go, pwm, pwm_Pos, posRed, posGreen, posBlue, pwm_check, left_
 
  // pwm:			pwm output signal for dispensing servo
  // pwm_Pos:		pwm output signal for changing color
+ // aniPwm			pwm outptu signal for knife animatrinic
  output pwm;
  output pwm_Pos;
+ output aniPwm;
  reg pwm;
- reg pwm_Pos; 
+ reg pwm_Pos;
+ reg aniPwm;
 
  // *_check:	feedback signals, helping with debugging.
- output pwm_check, left_check, right_check, posRed_check, posBlue_check, posGreen_check, go_check;
- reg left_check, right_check, pwm_check, posRed_check, posBlue_check, posGreen_check, go_check;
+ output pwm_check, left_check, right_check, posRed_check, posBlue_check, posGreen_check, go_check, aniPwm_check;
+ reg left_check, right_check, pwm_check, posRed_check, posBlue_check, posGreen_check, go_check, aniPwm_check;
 
  /*****************************
   *
@@ -66,17 +69,29 @@ module color (clk, go, pwm, pwm_Pos, posRed, posGreen, posBlue, pwm_check, left_
  parameter [16:0] PWM_length_red = 73000;
  parameter [16:0] PWM_length_green = 95000;
  parameter [16:0] PWM_length_blue = 50000;
+ 
+ parameter [16:0] PWM_length_ani0 = 50000;
+ parameter [16:0] PWM_length_ani1 = 65000;
+ parameter [16:0] PWM_length_ani2 = 75000;
+ parameter [16:0] PWM_length_ani3 = 100000;
 
  // Counter is counting clock ticks. One full cycle is 1'000'000 ticks
  reg [21:0] counter = 0;
  
+ // Counter for knife animatronic
+ reg [20:0] counterAni = 0; 
+ 
  // Certain amount of PWM pulses must be sent to servo for full movement and this is counting those pulses
  // TODO: Check what is the lowest number we need and use it
  reg [9:0] cycleCounter = 0;
+ reg [9:0] aniCycleCounter = 0;
  parameter [7:0] cycleAmount = 50;
  
  // Direction saves what is current position of dispensing servo and therefore indicating what direction it should move to dispense
  reg [1:0] direction = 0;
+ 
+ // Ditrection of animation
+ reg [3:0] aniDirection = 0;
  
  // If active is one, dispense token. By default 0, change when recieve go signal
  reg active = 0;
@@ -146,7 +161,7 @@ module color (clk, go, pwm, pwm_Pos, posRed, posGreen, posBlue, pwm_check, left_
 				endcase
 			end
 			
-			if (counter > 2999999) begin // 3 000 000 ticks = 60 ms = one full pulse cycle
+			if (counter > 999999) begin // 3 000 000 ticks = 60 ms = one full pulse cycle
 				counter = 0; // Reset ticks counter
 				cycleCounter = cycleCounter+1; // And increase cycle counter
 				
@@ -210,6 +225,56 @@ module color (clk, go, pwm, pwm_Pos, posRed, posGreen, posBlue, pwm_check, left_
 			// Feedback signal
 			pwm_check <= pwm;
 		end
+		
+		// Animatronics
+		
+		counterAni = counterAni+1; // Increase steps counter
+
+		if(aniCycleCounter <= 20) begin
+			case (aniDirection) // Direction of movement based on curent position
+				0: begin				
+					// If number of ticks is below or equal to amount needed, send 1, otherwise 0
+					if (counterAni <= PWM_length_ani0) aniPwm = 1;
+					else aniPwm = 0;
+				end
+
+				1: begin
+					if (counterAni <= PWM_length_ani2) aniPwm = 1;
+					else aniPwm = 0;
+				end
+				
+				2: begin
+					if (counterAni <= PWM_length_ani0) aniPwm = 1;
+					else aniPwm = 0;
+				end
+				
+				3: begin
+					if (counterAni <= PWM_length_ani3) aniPwm = 1;
+					else aniPwm = 0;
+				end
+				
+				default: begin
+					aniPwm = 0;
+				end
+			endcase
+		end
+		
+		// When full cycle complete, go from beginning, increse cycle counter
+		if (counterAni > 999999) begin
+			counterAni = 0;
+			aniCycleCounter = aniCycleCounter+1;
+			
+			// If enough pulses were sent, zero all counters and set active to 0
+			if (aniCycleCounter >= 20) begin
+				// Change direction
+				if (aniDirection == 13) aniDirection = 0;
+				else aniDirection = aniDirection+1;
+				aniCycleCounter = 0;
+			end
+		end
+		
+		aniPwm_check <= aniPwm;
+		
 	end
 
 endmodule
